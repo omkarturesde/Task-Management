@@ -7,8 +7,6 @@ export const validateData = (schema) => {
       next();
     } catch (error) {
       if (error instanceof ZodError) {
-        console.log(error.errors);
-
         const errorMessages = error.issues.map((issue) => ({
           message: `${issue.path} is ${issue.message}`,
         }));
@@ -18,7 +16,7 @@ export const validateData = (schema) => {
         });
       } else {
         res.status(500).json({
-          error: "Internal Server Error",
+          error: "Internal server error",
         });
       }
     }
