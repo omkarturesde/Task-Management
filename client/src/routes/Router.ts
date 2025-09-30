@@ -10,6 +10,10 @@ export const unsecuredRoutes = [
     path: path.LOGIN,
     Component: Login,
   },
+  {
+    path: path.HOME,
+    Component: Home,
+  },
 ];
 
 export const securedRoutes = [
