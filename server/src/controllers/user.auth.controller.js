@@ -28,13 +28,15 @@ export const registerUser = async (req, res) => {
 
 export const loginUser = async (req, res) => {
   try {
-    const { token, user } = await loginUserService(req.body);
+    const { token, existingUser } = await loginUserService(req.body);
     res.cookie(token);
 
     return res.status(200).json({
       message: "Login Successfull",
       token,
-      user,
+      user: {
+        email: existingUser.email,
+      },
     });
   } catch (error) {
     if (error.message === "User Not Found") {

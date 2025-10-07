@@ -39,5 +39,5 @@ export const loginUserService = async (data) => {
     { expiresIn: "12h" }
   );
 
-  return { token, data };
+  return { token, existingUser };
 };

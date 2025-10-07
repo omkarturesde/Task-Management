@@ -1,8 +1,10 @@
 import bgImage from "../assets/images/task management.PNG";
-import { useState } from "react";
+import { use, useState } from "react";
 import z from "zod";
 import { loginUser } from "../services/UserLoginService";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logInHandler } from "../store/slice/Login";
 
 const loginFormSchema = z.object({
   email: z.email("Invalid Email"),
@@ -18,7 +20,10 @@ const Login = () => {
     email: "",
     password: "",
   });
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -49,11 +54,12 @@ const Login = () => {
 
     try {
       const res = await loginUser(formData);
-      console.log("Login success:", res);
+
+      dispatch(logInHandler(res.data));
+      navigate("/home");
     } catch (err) {
       console.error("Login failed:", err);
     }
-    navigate("/home");
   };
 
   return (
