@@ -1,5 +1,5 @@
-import { Home, Login, SignUp } from "./LazyPath";
-import { path } from "./Path";
+import { Home, Login, SignUp } from './LazyPath';
+import { path } from './Path';
 
 export const unsecuredRoutes = [
   {
@@ -9,10 +9,6 @@ export const unsecuredRoutes = [
   {
     path: path.LOGIN,
     Component: Login,
-  },
-  {
-    path: path.HOME,
-    Component: Home,
   },
 ];
 

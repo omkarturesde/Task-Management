@@ -1,11 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 type initStateType = {
   loginDetails: {};
   token: string | null;
 };
 
-const getLocalToken = localStorage.getItem("loginDetails");
+const getLocalToken = localStorage.getItem('loginDetails');
 let tokenData = null;
 if (getLocalToken) {
   tokenData = JSON.parse(getLocalToken);
@@ -17,14 +17,12 @@ const initState: initStateType = {
 };
 
 const LoginSlice = createSlice({
-  name: "Login",
+  name: 'Login',
   initialState: initState,
   reducers: {
     logInHandler(state, action) {
-      console.log(action.payload);
-
-      localStorage.setItem("loginDetails", JSON.stringify(action.payload.user));
-      localStorage.setItem("token", action?.payload?.token);
+      localStorage.setItem('loginDetails', JSON.stringify(action.payload.user));
+      localStorage.setItem('token', action?.payload?.token);
 
       state.token = action.payload.token;
       state.loginDetails = action.payload.user;
