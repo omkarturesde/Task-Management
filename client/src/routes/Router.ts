@@ -1,5 +1,5 @@
-import { Home, Login, SignUp } from './LazyPath';
-import { path } from './Path';
+import { Home, Login, SignUp } from "./LazyPath";
+import { path } from "./Path";
 
 export const unsecuredRoutes = [
   {
