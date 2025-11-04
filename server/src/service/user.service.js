@@ -1,6 +1,6 @@
-import { User } from "../models/user.model.js";
-import jwt from "jsonwebtoken";
-import { configDotenv } from "dotenv";
+import { User } from '../models/user.model.js';
+import jwt from 'jsonwebtoken';
+import { configDotenv } from 'dotenv';
 
 configDotenv();
 export const createUser = async (data) => {
@@ -12,7 +12,7 @@ export const createUser = async (data) => {
 export const registerUserService = async (data) => {
   const { email } = data;
   const existingUser = await User.findOne({ email });
-  if (existingUser) throw new Error("User already exists");
+  if (existingUser) throw new Error('Email is already registered');
   const user = await createUser(data);
   const token = jwt.sign(
     {
@@ -20,23 +20,23 @@ export const registerUserService = async (data) => {
       email: email,
     },
     process.env.JWT_SECRET_KEY,
-    { expiresIn: "12h" }
+    { expiresIn: '12h' }
   );
-  return { token, user };
+  return { token, email };
 };
 
 export const loginUserService = async (data) => {
   const { email, password } = data;
   const existingUser = await User.findOne({ email });
-  if (!existingUser) throw new Error("User Not Found");
+  if (!existingUser) throw new Error('User Not Found');
 
   const isMatch = await existingUser.comparePassword(password);
-  if (!isMatch) throw new Error("Invalid Credentials");
+  if (!isMatch) throw new Error('Invalid Credentials');
 
   const token = jwt.sign(
     { id: existingUser._id, email: email },
     process.env.JWT_SECRET_KEY,
-    { expiresIn: "12h" }
+    { expiresIn: '12h' }
   );
 
   return { token, existingUser };

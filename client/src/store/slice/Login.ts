@@ -20,6 +20,13 @@ const LoginSlice = createSlice({
   name: 'Login',
   initialState: initState,
   reducers: {
+    logoutHandler(state) {
+      localStorage.removeItem('loginDetails');
+      localStorage.removeItem('token');
+
+      state.token = null;
+      state.loginDetails = {};
+    },
     logInHandler(state, action) {
       localStorage.setItem('loginDetails', JSON.stringify(action.payload.user));
       localStorage.setItem('token', action?.payload?.token);

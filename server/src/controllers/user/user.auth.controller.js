@@ -5,20 +5,22 @@ import {
 
 export const registerUser = async (req, res) => {
   try {
-    const { token, user } = await registerUserService(req.body);
+    const { token, email } = await registerUserService(req.body);
     res.cookie(token);
 
     return res.status(201).json({
-      message: 'User created Successfully',
-      user,
+      message: 'Account created successfully',
+      token,
+      user: {
+        email,
+      },
     });
   } catch (error) {
-    if (error.message === 'User already exists') {
+    if (error.message === 'Email is already registered') {
       return res.status(409).json({
         message: error.message,
       });
     }
-
     return res.status(500).json({
       message: 'Internal Server Error',
     });
