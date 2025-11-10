@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    /* === File Layout === */
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    /* === Target Environment === */
+    "module": "ESNext", // For ESM imports
+    "target": "ES2022", // Modern Node support (>= v18)
+    "moduleResolution": "node", // Required for Node's module resolution
+    // "allowImportingTsExtensions": true, // Optional but helps for ".ts" imports in ESM
+
+    /* === Node.js Types === */
+    "lib": ["ESNext"], // No DOM, just Node/ES features
+    "types": ["node"], // Adds global Node types (process, fs, etc.)
+
+    /* === Output Options === */
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+
+    /* === Strictness === */
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+
+    /* === Module Behavior === */
+    "esModuleInterop": true, // Enables default imports from CJS libs (like express)
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+
+    /* === Optional Cleanup === */
+    "noUncheckedSideEffectImports": true
+  },
+  "include": ["src"]
+}
